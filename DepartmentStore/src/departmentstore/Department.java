@@ -8,6 +8,14 @@ package departmentstore;
  *
  * @author Gicely
  */
-public class Department {
-    
+//defines the existing departments. Also using enum, list fixed.
+public enum Department {
+    sales,
+    HR,
+    finance,
+    marketing,
+    operations,
+    customers_service,
+    IT,
+    accounting    
 }

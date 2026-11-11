@@ -8,6 +8,12 @@ package departmentstore;
  *
  * @author Gicely
  */
-public class ManagerType {
-    
+//defines the valid employee roles
+//the option ENUM is a fixed list
+public enum ManagerType {
+    store_manager,
+    senior_manager,
+    department_manager,
+    team_lead,
+    sales_assistent
 }
