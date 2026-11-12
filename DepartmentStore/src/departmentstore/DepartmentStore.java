@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package departmentstore;
+
+import java.io.IOException;
 /**
  *
  * @author Gicely
@@ -14,14 +16,15 @@ public class DepartmentStore {
      */
     public static void main(String[] args) {
         
-        //test model
-        Employee employee = new Employee (
-                "Kate Summer",
-                ManagerType.store_manager,
-                Department.IT
-        );
+        StoreModel model = new StoreModel ();
         
-        System.out.println(employee);
-    }
-    
+        try {
+            model.load("Applicants_Form.txt");
+            
+            System.out.println("File read sucessfully: " + model.size() + " employees.");
+            
+        } catch (IOException | IllegalArgumentException ex) {
+            System.out.println("Unable to load file: " + ex.getMessage());
+        }
+    }   
 }
