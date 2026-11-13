@@ -21,7 +21,16 @@ public class DepartmentStore {
         try {
             model.load("Applicants_Form.txt");
             
-            System.out.println("File read sucessfully: " + model.size() + " employees.");
+            Employee[] sorted = model.getSortedEmployees();
+            
+            System.out.println("First 20 names in alphabetical order:");
+
+            int limit = Math.min(20, sorted.length);
+
+            for (int i = 0; i < limit; i++) {
+
+                System.out.println((i + 1) + ". " + sorted[i].getName());
+            }
             
         } catch (IOException | IllegalArgumentException ex) {
             System.out.println("Unable to load file: " + ex.getMessage());

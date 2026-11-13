@@ -90,4 +90,9 @@ public class StoreModel {
     public Employee [] getEmployees(){
         return employees.clone();
     }
+    
+    //sort a copy so the original insertion order is preserved
+    public Employee[] getSortedEmployees() {
+        return EmployeeAlgorithms.quickSort(getEmployees());
+    }
 }
