@@ -95,4 +95,35 @@ public class StoreModel {
     public Employee[] getSortedEmployees() {
         return EmployeeAlgorithms.quickSort(getEmployees());
     }
+    
+    public Employee[] search(String name) {
+        Employee[] sorted = getSortedEmployees();
+        String target = name.trim();
+        
+        int found = EmployeeAlgorithms.binarySearch(sorted,0,sorted.length - 1,target);
+        
+        if (found == -1) {
+            return new Employee[0];
+        }
+        
+        //include all employees sharing same name
+        int start = found;
+        int end = found;
+        
+        while (start > 0 && sorted[start - 1].getName().equalsIgnoreCase(target)) {
+            start--;
+        }
+
+        while (end < sorted.length - 1 && sorted[end + 1].getName().equalsIgnoreCase(target)) {
+            end++;
+        }
+        
+        Employee[] matches = new Employee[end - start + 1];
+        
+        for (int i = start; i <= end; i++) {
+            matches[i - start] = sorted[i];
+        }
+        
+        return matches;
+    }
 }

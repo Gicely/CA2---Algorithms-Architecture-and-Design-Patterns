@@ -21,19 +21,24 @@ public class DepartmentStore {
         try {
             model.load("Applicants_Form.txt");
             
-            Employee[] sorted = model.getSortedEmployees();
-            
-            System.out.println("First 20 names in alphabetical order:");
+            Employee[] matches = model.search("Alex Turner");
 
-            int limit = Math.min(20, sorted.length);
+            System.out.println("Search result:");
 
-            for (int i = 0; i < limit; i++) {
-
-                System.out.println((i + 1) + ". " + sorted[i].getName());
+            for (int i = 0; i < matches.length; i++) {
+                System.out.println(matches[i]);
             }
-            
+
+            Employee[] missing = model.search("Nobody Here");
+
+            if (missing.length == 0) {
+                System.out.println("Person not found.");
+            }
+
         } catch (IOException | IllegalArgumentException ex) {
-            System.out.println("Unable to load file: " + ex.getMessage());
+
+            System.out.println(
+                    "Unable to run program: " + ex.getMessage());
         }
     }   
 }

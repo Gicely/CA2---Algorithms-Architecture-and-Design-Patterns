@@ -70,4 +70,26 @@ public class EmployeeAlgorithms {
         return result;
     }
     
+    //search an alphabetically sorted employee array
+    public static int binarySearch(Employee[] arr,int left,int right,String target) {
+        
+        //stop when theres no search left
+        if (left > right) {
+            return -1;
+        }
+        
+        int mid = left + (right - left) / 2;
+        
+        int comparison = target.compareToIgnoreCase(arr[mid].getName());
+        
+        if (comparison == 0) {
+            return mid;
+        }
+
+        if (comparison < 0) {
+            return binarySearch(arr,left,mid - 1,target);
+        }
+        return binarySearch(arr,mid + 1,right,target);
+    }
+    
 }
