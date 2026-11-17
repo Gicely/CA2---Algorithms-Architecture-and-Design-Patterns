@@ -143,4 +143,18 @@ public class StoreModel {
         return addedRecords.clone();
     }
     
+    //enforce minimum number of records
+    public EmployeeTree createTree() {
+        if (employees.length < 20) {
+        throw new IllegalArgumentException("At least 20 employees are required.");
+        }
+        
+        EmployeeTree tree = new EmployeeTree();
+
+        //preserve the original file and insertion order
+        for(int i = 0; i < employees.length; i++) {
+            tree.insert(employees[i]);
+        }
+        return tree;
+    }
 }
