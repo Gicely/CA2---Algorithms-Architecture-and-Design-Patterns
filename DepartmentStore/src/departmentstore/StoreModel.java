@@ -19,6 +19,9 @@ public class StoreModel {
     //keep the employee order
     private Employee [] employees = new Employee [0];
     
+    //store the records added during the current session
+    private Employee[] addedRecords = new Employee[0];
+    
     public void load (String filename) throws IOException{
         
         //validating the file
@@ -68,6 +71,9 @@ public class StoreModel {
             throw new IllegalArgumentException ("The file contains no employee records.");
         }
         employees = loaded;
+        
+        //reset the list of newly added records after loading
+        addedRecords = new Employee[0];
     }
     private Employee [] append (
             Employee [] original,
@@ -126,4 +132,15 @@ public class StoreModel {
         
         return matches;
     }
+    //add the employee to both lists
+    public void add(Employee employee) {
+    employees = append(employees, employee);
+    addedRecords = append(addedRecords, employee);
+    }
+    
+    //return a copy of the session records
+    public Employee[] getAddedRecords() {
+        return addedRecords.clone();
+    }
+    
 }
