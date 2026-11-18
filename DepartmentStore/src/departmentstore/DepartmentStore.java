@@ -23,9 +23,17 @@ public class DepartmentStore {
 
             EmployeeTree tree = model.createTree();
 
-            System.out.println("Tree constructed from "+ model.size()+ " employee records.");
-            
-        }catch (IOException | IllegalArgumentException ex) {
+            String[] levels = tree.levelOrder();
+
+            for(int i = 0; i < levels.length; i++) {
+                System.out.println(levels[i]);
+            }
+
+            System.out.println("Height (levels): " + tree.height());
+
+            System.out.println("Total nodes: " + tree.count());
+        
+        } catch (IOException | IllegalArgumentException ex) {
 
             System.out.println("Unable to run program: " + ex.getMessage());
         }

@@ -61,4 +61,70 @@ public class EmployeeTree {
             queue.add(current.right);
         }
     }
+    
+    public String[] levelOrder() {
+        
+        String[] levels = new String[height()];
+        
+        if (root == null) {
+            return levels;
+        }
+        
+        Queue<Node> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int level = 0;
+        
+        while (!queue.isEmpty()) {
+            //count only the nodes belonging to the current level
+            int nodesInLevel = queue.size();
+            
+            String text = "Level " + (level + 1) + ":\n";
+            
+            for (int i = 0; i < nodesInLevel; i++) {
+                
+                Node current = queue.remove();
+                
+                text += "  " + current.employee + "\n";
+                
+                if (current.left != null) {
+                    queue.add(current.left);
+                }
+                
+                if (current.right != null) {
+                    queue.add(current.right);
+                }
+            }
+            levels[level] = text;
+            level++;
+        }
+        return levels;
+    }
+    
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node node) {
+        //an empty subtree has zero levels
+        if (node == null) {
+            return 0;
+        }
+        //add this level to the height of the deeper subtree
+        return 1 + Math.max(height(node.left),height(node.right));
+    }
+
+    public int count() {
+        return count(root);
+    }
+
+    private int count(Node node) {
+        
+        if (node == null) {
+            return 0;
+        }
+        //count node and both subtrees
+    return 1+ count(node.left)+ count(node.right);
+    }
 }
