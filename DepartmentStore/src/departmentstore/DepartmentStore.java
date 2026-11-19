@@ -16,26 +16,14 @@ public class DepartmentStore {
      */
     public static void main(String[] args) {
         
-        StoreModel model = new StoreModel ();
-        
-        try {
-            model.load("Applicants_Form.txt");
+        //create the model and the view
+        StoreModel model = new StoreModel();
+        StoreView view = new StoreView();
 
-            EmployeeTree tree = model.createTree();
+        //connect them through the controller.
+        StoreController controller = new StoreController(model,view);
 
-            String[] levels = tree.levelOrder();
-
-            for(int i = 0; i < levels.length; i++) {
-                System.out.println(levels[i]);
-            }
-
-            System.out.println("Height (levels): " + tree.height());
-
-            System.out.println("Total nodes: " + tree.count());
-        
-        } catch (IOException | IllegalArgumentException ex) {
-
-            System.out.println("Unable to run program: " + ex.getMessage());
-        }
+        //start the interactive application
+        controller.run();
     }
 }
